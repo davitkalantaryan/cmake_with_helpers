@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# example: ./scripts/unix_compile_gcc_args_version_installpath.sh releases/gcc-9.5.0 /afs/ifh.de/group/pitz/doocs/ers/sys/AlmaLinux9/gccv/9.5.0
+# example: ./scripts/unix_compile_cmake_args_version_installpath.sh v3.25.2 /afs/ifh.de/group/pitz/doocs/ers/sys/AlmaLinux9/cmakev/3.25.2
 
 # exit when any command fails
 set -e
@@ -53,9 +53,8 @@ rm -fr ${installDir}
 
 # cd to build dir
 cd ${buildDir}
-${cmakeDir}/bootstrap --prefix=${installDir} --disable-multilib --disable-libsanitizer --disable-libjava
-#${gccDir}/configure --prefix=${installDir} --disable-multilib --disable-libsanitizer --enable-languages=c,c++
-make -j$(nproc)
+${cmakeDir}/bootstrap --prefix=${installDir}
+make
 mkdir -p ${installDir}
 make install
 
